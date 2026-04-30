@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Schedule Optimizer | DP 0/1 Knapsack</title>
+    <meta name="description" content="Maximize your exam marks using Dynamic Programming optimization algorithms.">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Study Schedule Optimizer</h1>
+            <p class="subtitle">Maximize your exam marks using Dynamic Programming (0/1 Knapsack)</p>
+        </header>
+
+        <main>
+            <!-- Input Screen -->
+            <div id="input-screen">
+                <section class="section">
+                    <h2>Add Study Task</h2>
+                    <form id="add-task-form">
+                        <div class="input-group">
+                            <div class="field">
+                                <label for="subject-name">Subject Name</label>
+                                <input type="text" id="subject-name" placeholder="e.g., Algorithms" required>
+                            </div>
+                            <div class="field">
+                                <label for="hours-needed">Hours Needed</label>
+                                <input type="number" id="hours-needed" min="1" max="24" value="2" required>
+                            </div>
+                            <div class="field">
+                                <label for="marks-weightage">Marks Weightage</label>
+                                <input type="number" id="marks-weightage" min="1" max="100" value="10" required>
+                            </div>
+                            <button type="submit" class="btn-primary">+ Add Task</button>
+                        </div>
+                    </form>
+
+                    <div class="table-container">
+                        <table id="task-table">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Hours</th>
+                                    <th>Marks</th>
+                                    <th>Marks/Hour</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="task-list">
+                                <!-- Tasks will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>Optimization Settings</h2>
+                    <div class="input-group">
+                        <div class="field">
+                            <label for="total-study-hours">Available Study Time (Hours)</label>
+                            <input type="number" id="total-study-hours" min="1" max="100" value="6">
+                        </div>
+                    </div>
+                    <button id="optimize-btn" class="btn-solve">Find My Optimal Study Plan</button>
+                </section>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-screen" class="hidden">
+                <div class="section">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2>Optimal Study Plan</h2>
+                        <button id="edit-tasks-btn" class="btn-outline">Edit My Tasks</button>
+                    </div>
+
+                    <div class="result-summary">
+                        <div class="stat-card">
+                            <div class="stat-label">Total Marks</div>
+                            <div id="res-total-marks" class="stat-value">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Hours Utilized</div>
+                            <div id="res-hours-used" class="stat-value">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Efficiency</div>
+                            <div id="res-efficiency" class="stat-value">0%</div>
+                        </div>
+                    </div>
+
+                    <div id="selected-tasks-container" class="selected-tasks-grid">
+                        <!-- Selected tasks cards injected here -->
+                    </div>
+                </div>
+
+                <section class="section">
+                    <h2>Dynamic Programming Visualization</h2>
+                    <p class="subtitle" style="margin-bottom: 1rem;">The highlighted path shows how the algorithm
+                        arrived at the optimal score of <span id="dp-max-score"
+                            style="color: var(--primary-color); font-weight: 700;"></span>.</p>
+                    <div class="dp-table-wrapper">
+                        <table id="dp-visualization-table" class="dp-table">
+                            <!-- DP table will be injected here -->
+                        </table>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>Tasks Not Selected</h2>
+                    <div id="skipped-tasks-container" class="selected-tasks-grid">
+                        <!-- Skipped tasks cards injected here -->
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="dp.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
